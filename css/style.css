@@ -1,0 +1,42 @@
+@import url('garczewski-specific.css');
+
+.trello-card fieldset {
+  border: 0;
+  padding: 0;
+}
+
+/** cover image **/
+.trello-cover {
+  float: right;
+  width: 20em;
+}
+
+/** label colors from Trello.com **/
+.trello-label-green {
+  color: #61bd4f;
+}
+
+.trello-label-yellow {
+  color: #f2d600;
+}
+
+.trello-label-orange {
+  color: #ff9f1a;
+}
+
+.trello-label-red {
+  color: #eb5a46;
+}
+
+.trello-label-purple {
+  color: #c377e0;
+}
+
+.trello-label-blue {
+  color: #0079bf;
+}
+
+/** checklist styling **/
+.trello-checklist-name:after {
+  content: " | ";
+}
