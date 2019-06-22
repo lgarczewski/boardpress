@@ -1,8 +1,10 @@
-@import url('garczewski-specific.css');
-
 .trello-card fieldset {
   border: 0;
   padding: 0;
+}
+
+article.trello-card header.entry-header {
+  margin: 0;
 }
 
 /** cover image **/
@@ -37,6 +39,12 @@
 }
 
 /** checklist styling **/
-.trello-checklist-name:after {
+.trello-card ul.trello-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trello-card .trello-checklist-name:after {
   content: " | ";
 }

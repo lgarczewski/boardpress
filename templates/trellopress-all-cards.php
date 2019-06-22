@@ -1,7 +1,7 @@
 <?php foreach ($this->output as $id => $card) : ?>
-<article class="trello-card post type-post format-standard blog entry">
+<article class="trello-card post blog">
   <header class="entry-header">
-    <h2 class="entry-title">
+    <h2>
       <a href="<?= $card['url'] ?>"><?= $card['name'] ?></a>
     </h2>
     <div class="entry-meta trello-list">
@@ -34,7 +34,7 @@
     <?php endif; ?>
     </div>
   </header>
-  <div class="entry-content trello-desc">
+  <div class="trello-desc">
     <?php if (!empty($card['cover'])) : ?>
     <img class="trello-cover" src="<?= $card['cover'] ?>" />
     <?php endif; ?>

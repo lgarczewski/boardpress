@@ -114,6 +114,14 @@ class TrelloPressSettings {
     }
   }
 
+  public function get_settings_url() {
+    return admin_url(
+      'options-general.php?' . http_build_query(
+        ['page' => self::PAGE_NAME]
+      )
+    );
+  }
+
   private function build_input( $id ) {
     printf(
       "<input type='text' pattern='[\w]+' id='trellopress[{$id}]' name='trellopress[{$id}]' value='%s' />",

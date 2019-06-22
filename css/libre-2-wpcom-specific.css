@@ -92,12 +92,6 @@
   content: " \00B7 ";
 }
 
-.trello-card ul.trello-checklist {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .trello-card ul.trello-checklist label {
   font-style: normal;
 }

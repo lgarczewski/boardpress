@@ -9,11 +9,11 @@
  * Domain Path: /languages
  */
 
-# -- before release 1.1 --
-# @todo activation flow with API activation
-# @todo labels as links to a label view
-# @todo card-based view in lists
-# @todo fix footer
+ # @todo activation flow with API activation
+ # -- before release 1.1 --
+ # @todo labels as links to a label view
+ # @todo card-based view in lists
+ # @todo fix footer
 
 $class = 'TrelloPress';
 require_once( 'TrelloPress.class.php' );
@@ -36,9 +36,17 @@ add_action('save_post', [$class.'MetaBox', 'save_postdata']);
 add_action('pre_get_posts', [$class.'RelatedPosts','filter_related_posts']);
 add_filter('query_vars', [$class.'RelatedPosts','add_query_vars_filter']);
 
-// register_activation_hook( )
-// add_action();
+register_activation_hook( __FILE__, 'trellopress_activate');
 function trellopress_activate() {
+  add_option('Activated_Plugin','trellopress');
+}
+
+add_action('admin_init','trellopress_activation_flow');
+function trellopress_activation_flow() {
+    if(is_admin() && get_option('Activated_Plugin')=='trellopress') {
+      delete_option('Activated_Plugin');
+      wp_redirect( TrelloPressSettings::get_settings_url() );
+    }
 }
 
 add_action('plugins_loaded', 'trellopress_init');
@@ -51,11 +59,7 @@ function trellopress_init() {
 add_filter('plugin_action_links', 'trellopress_action_links', 10, 2);
 function trellopress_action_links( $links, $plugin_file ) {
   if ( $plugin_file == plugin_basename(__FILE__) ) {
-    $settings_url = admin_url(
-      'options-general.php?' . http_build_query(
-        ['page' => TrelloPressSettings::PAGE_NAME]
-      )
-    );
+    $settings_url = TrelloPressSettings::get_settings_url();
     $links[] = "<a href='{$settings_url}'>" . __( 'Settings' ) . "</a>";
   }
   return $links;
