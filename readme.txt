@@ -2,6 +2,7 @@
 Contributors: lgarczewski
 Donate link: https://paypal.me/phareios
 Tags: Trello, kanban, to do list, tasks
+Requires at least: 5.2.2
 Tested up to: 5.2.2
 Stable tag: trunk
 Requires PHP: 5.2.4
