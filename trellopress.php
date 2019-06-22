@@ -9,12 +9,6 @@
  * Domain Path: /languages
  */
 
- # @todo activation flow with API activation
- # -- before release 1.1 --
- # @todo labels as links to a label view
- # @todo card-based view in lists
- # @todo fix footer
-
 $class = 'TrelloPress';
 require_once( 'TrelloPress.class.php' );
 require_once( 'TrelloPressMetaBox.class.php' );
