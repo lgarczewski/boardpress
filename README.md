@@ -1,10 +1,10 @@
-# TrelloPress – a Wordpress plugin
+# BoardPress – a Wordpress plugin
 
-TrelloPress is a Wordpress plugin, which integrates Trello with your Wordpress site.
+BoardPress is a Wordpress plugin, which integrates Trello with your Wordpress site.
 
 Features:
-* use the ```[trellopress]``` shortcode to display the content of Trello boards in your pages and posts,
-* use ```[trellopress list=name]``` to only display cards from a specified list,
+* use the ```[boardpress]``` shortcode to display the content of Trello boards in your pages and posts,
+* use ```[boardpress list=name]``` to only display cards from a specified list,
 * show a link to Trello cards on related posts.
 
 ## Installation

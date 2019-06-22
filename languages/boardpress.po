@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: trellopress\n"
+"Project-Id-Version: boardpress\n"
 "POT-Creation-Date: 2019-06-18 23:03+0200\n"
 "PO-Revision-Date: 2019-06-18 23:03+0200\n"
 "Last-Translator: \n"
@@ -16,53 +16,53 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: templates/trellopress-all-cards.php:21
+#: templates/boardpress-all-cards.php:21
 #, php-format
 msgid "Last updated: %s"
 msgstr ""
 
-#: templates/trellopress-all-cards.php:30
+#: templates/boardpress-all-cards.php:30
 #, php-format
 msgid "Mentioned in %d related posts"
 msgstr ""
 
-#: templates/trellopress-all-cards.php:53
+#: templates/boardpress-all-cards.php:53
 msgid "Takes you to the board on Trello.com"
 msgstr ""
 
-#: templates/trellopress-all-cards.php:54
-#: templates/trellopress-all-cards.php:74
+#: templates/boardpress-all-cards.php:54
+#: templates/boardpress-all-cards.php:74
 msgid "open task details"
 msgstr ""
 
-#: templates/trellopress-all-cards.php:73
+#: templates/boardpress-all-cards.php:73
 msgid "Opens the board on Trello.com"
 msgstr ""
 
-#: templates/trellopress-all-cards.php:82
+#: templates/boardpress-all-cards.php:82
 #, php-format
 msgid ""
 "Data taken from %s, graciously hosted on\n"
 "      <a href=\"https://trello.com/\">Trello</a>."
 msgstr ""
 
-#: templates/trellopress-meta-box.php:2
+#: templates/boardpress-meta-box.php:2
 msgid "Connect a Trello card to this post:"
 msgstr ""
 
-#: templates/trellopress-meta-box.php:5
+#: templates/boardpress-meta-box.php:5
 msgid "Not defined"
 msgstr ""
 
-#: templates/trellopress-settings-page.php:2
-msgid "TrelloPress Settings"
+#: templates/boardpress-settings-page.php:2
+msgid "BoardPress Settings"
 msgstr ""
 
-#: templates/trellopress-single-card.php:3
+#: templates/boardpress-single-card.php:3
 #, php-format
 msgid "Learn more about the task described in this post: %s"
 msgstr ""
 
-#: trellopress.php:48
+#: boardpress.php:48
 msgid "Settings"
 msgstr ""

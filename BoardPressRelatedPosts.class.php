@@ -2,7 +2,7 @@
 // @todo add custom title to page
 // @todo add intro to page
 
-class TrelloPressRelatedPosts {
+class BoardPressRelatedPosts {
   const QUERY_VAR = 'trello_related_posts';
 
   public static function get_link( $card_id ) {
@@ -16,7 +16,7 @@ class TrelloPressRelatedPosts {
       return;
     }
 
-    $wp_query->set( 'meta_key', TrelloPress::META_FIELD );
+    $wp_query->set( 'meta_key', BoardPress::META_FIELD );
     $wp_query->set( 'meta_value', $card_id );
     $wp_query->set( 'meta_compare', '=' );
   }

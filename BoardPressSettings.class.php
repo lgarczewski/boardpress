@@ -1,8 +1,8 @@
 <?php
-class TrelloPressSettings {
+class BoardPressSettings {
   private $options;
 
-  const PAGE_NAME = 'trellopress-admin';
+  const PAGE_NAME = 'boardpress-admin';
 
   public function __construct() {
     add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
@@ -12,16 +12,16 @@ class TrelloPressSettings {
   public function add_plugin_page() {
     // This page will be under "Settings"
     add_options_page(
-      'TrelloPress Settings',
-      'TrelloPress',
+      'BoardPress Settings',
+      'BoardPress',
       'manage_options',
-      'trellopress-admin',
+      'boardpress-admin',
       array( $this, 'create_admin_page' )
     );
   }
 
   public function create_admin_page() {
-    $this->options = get_option( 'trellopress' );
+    $this->options = get_option( 'boardpress' );
 
     $this->render( 'settings-page');
   }
@@ -31,47 +31,47 @@ class TrelloPressSettings {
   */
   public function page_init() {
     register_setting(
-      'trellopress', // Option group
-      'trellopress', // Option name
+      'boardpress', // Option group
+      'boardpress', // Option name
       array( $this, 'sanitize' ) // Sanitize
     );
 
     add_settings_section(
-      'trellopress_api_section', // ID
+      'boardpress_api_section', // ID
       'Trello API settings', // Title
       array( $this, 'api_help_text' ), // Callback
-      'trellopress-admin' // Page
+      'boardpress-admin' // Page
     );
 
     add_settings_field(
-      'trellopress_api_key', // ID
+      'boardpress_api_key', // ID
       'Trello API key', // Title
       array( $this, 'api_key_callback' ), // Callback
-      'trellopress-admin', // Page
-      'trellopress_api_section' // Section
+      'boardpress-admin', // Page
+      'boardpress_api_section' // Section
     );
 
     add_settings_field(
-      'trellopress_api_token',
+      'boardpress_api_token',
       'Trello API token',
       array( $this, 'api_token_callback' ),
-      'trellopress-admin',
-      'trellopress_api_section'
+      'boardpress-admin',
+      'boardpress_api_section'
     );
 
     add_settings_section(
-      'trellopress_board_section', // ID
+      'boardpress_board_section', // ID
       'Trello board settings', // Title
       '', // Callback
-      'trellopress-admin' // Page
+      'boardpress-admin' // Page
     );
 
     add_settings_field(
-      'trellopress_board_id',
+      'boardpress_board_id',
       'Board tied to this blog',
       array( $this, 'board_id_callback' ),
-      'trellopress-admin',
-      'trellopress_board_section'
+      'boardpress-admin',
+      'boardpress_board_section'
     );
   }
 
@@ -106,7 +106,7 @@ class TrelloPressSettings {
 
   public function board_id_callback() {
     if ( !empty($this->options) && !empty($this->options['api_key']) ) {
-      $tp = new TrelloPress();
+      $tp = new BoardPress();
       $boards = $tp->get( 'members', 'me', ['boards' => 'all'] );
       $this->render('settings-board-picker', $boards);
     } else {
@@ -124,12 +124,12 @@ class TrelloPressSettings {
 
   private function build_input( $id ) {
     printf(
-      "<input type='text' pattern='[\w]+' id='trellopress[{$id}]' name='trellopress[{$id}]' value='%s' />",
+      "<input type='text' pattern='[\w]+' id='boardpress[{$id}]' name='boardpress[{$id}]' value='%s' />",
       isset( $this->options[$id] ) ? esc_attr( $this->options[$id]) : ''
     );
   }
 
   private function render( $template, $data = array() ) {
-    include( "templates/trellopress-{$template}.php");
+    include( "templates/boardpress-{$template}.php");
   }
 }

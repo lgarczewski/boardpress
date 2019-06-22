@@ -1,5 +1,5 @@
 <?php
-class TrelloPress {
+class BoardPress {
   public $lists = array();
   public $labels = array();
   public $data = array();
@@ -12,17 +12,19 @@ class TrelloPress {
   const URL_PATTERN = 'https://api.trello.com/1/%s/%s?%s';
 
   // config
-  private $api_key;
-  private $api_token;
-  private $board_id;
+  private $api_key = '';
+  private $api_token = '';
+  private $board_id = null;
 
   function __construct() {
-    $options = get_option('trellopress', array() );
+    $options = get_option('boardpress', array() );
     foreach ( $options as $var => $opt ) {
       $this->$var = $opt;
     }
 
-    $this->data = $this->get_all_data();
+    if ( $this->board_id ) {
+      $this->data = $this->get_all_data();
+    }
 
     // needed for use of strftime() and other functions
     setlocale(LC_TIME, [get_locale() . '.utf8', get_locale()]);
@@ -221,7 +223,7 @@ class TrelloPress {
   function render_template( $template, $data = array() ) {
 
     ob_start();
-    require( "templates/trellopress-$template.php" );
+    require( "templates/boardpress-$template.php" );
     $out = ob_get_contents();
     ob_end_clean();
 
@@ -231,7 +233,7 @@ class TrelloPress {
   function add_post_module( $content ) {
     global $post, $card;
     if (!empty($post) && is_single($post)) {
-      $card_id = get_post_meta($post->ID, TrelloPress::META_FIELD, true);
+      $card_id = get_post_meta($post->ID, BoardPress::META_FIELD, true);
       if (!empty($card_id)) {
         $tp = new self();
         try {
@@ -252,7 +254,7 @@ class TrelloPress {
     $tp = new self();
     echo sprintf(
       __('Data taken from %s, graciously hosted on
-          <a href="https://trello.com/">Trello</a>.', 'trellopress'),
+          <a href="https://trello.com/">Trello</a>.', 'boardpress'),
         $tp->get_board_link()
     );
   }
@@ -260,13 +262,13 @@ class TrelloPress {
   public static function register_css() {
       $plugin_url = plugin_dir_url( __FILE__ );
 
-      wp_enqueue_style( 'trellopress-style', $plugin_url . 'css/style.css' );
+      wp_enqueue_style( 'boardpress-style', $plugin_url . 'css/style.css' );
 
       $theme_name = get_template();
       $theme_stylesheet = "css/{$theme_name}-specific.css";
       if ( file_exists( __DIR__ . '/' . $theme_stylesheet ) ) {
         wp_enqueue_style(
-          'trellopress-style-' . $theme_name,
+          'boardpress-style-' . $theme_name,
           $plugin_url . $theme_stylesheet
         );
 

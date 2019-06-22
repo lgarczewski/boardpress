@@ -65,7 +65,7 @@
 }
 
 /** single card (post module) **/
-.trellopress-single-card {
+.boardpress-single-card {
   background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgZGF0YS1pY29uPSJ0YXNrIiBkYXRhLWNvbnRhaW5lci10cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDQpIiB2aWV3Qm94PSIwIDAgMTYgMTYiIHg9IjBweCIgeT0iMHB4Ij48cGF0aCBkPSJNMCAwdjhoOHYtNC4wOTM5OTk5OTk5OTk5OTlsLTEgMXYyLjA5NGgtNnYtNmg0LjE4OGwxLTFoLTYuMTg4em03LjU5NCAwbC0zLjA5NCAzLjA2My0xLjI4MS0xLjI4MS0xLjQzOCAxLjQzOCAyIDIgLjcxOS42ODguNzE5LS42ODggMy43ODEtMy44MTMtMS40MDYtMS40MDZ6bTIuNDA2IDJ2MWg2di0xaC02em0wIDN2MWg1di0xaC01eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCA0KSI+PC9wYXRoPjwvc3ZnPg==");
   background-repeat: no-repeat;
   background-position: 1em 0;
@@ -74,7 +74,7 @@
 }
 
 @media (max-width: 720px) {
-  .trellopress-single-card {
+  .boardpress-single-card {
     background-position: center 1em;
     background-size: 30%;
     padding: 6em 0 0 0;
@@ -82,7 +82,7 @@
   }
 }
 
-.trellopress-single-card a:first-of-type:before {
+.boardpress-single-card a:first-of-type:before {
   content: "\a ";
   white-space: pre;
 }

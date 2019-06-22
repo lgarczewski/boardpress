@@ -16,7 +16,7 @@
       </span>
       <span>
         <?= sprintf(
-          __('Last updated: %s', 'trellopress'),
+          __('Last updated: %s', 'boardpress'),
           "<time datetime='{$card['last_update']['time']}'>
             {$card['last_update']['text']}
           </time>"
@@ -24,9 +24,9 @@
       </span>
       <?php if ( !empty($card['related_posts']) ) : ?>
       <span>
-        <a href="<?= TrelloPressRelatedPosts::get_link( $id ) ?>">
+        <a href="<?= BoardPressRelatedPosts::get_link( $id ) ?>">
         <?= sprintf(
-          __('Mentioned in %d related posts', 'trellopress'),
+          __('Mentioned in %d related posts', 'boardpress'),
           count( $card['related_posts'] )
         ) ?>
         </a>
@@ -48,8 +48,8 @@
             <?= $cl['name'] ?>
           </span>
           <a class='trello-card-details' href="<?= $card['url'] ?>"
-              title="<?= __('Takes you to the board on Trello.com', 'trellopress') ?>">
-            <?= __('open task details', 'trellopress') ?>
+              title="<?= __('Takes you to the board on Trello.com', 'boardpress') ?>">
+            <?= __('open task details', 'boardpress') ?>
           </a>
         </legend>
         <ul class="trello-checklist">
@@ -66,8 +66,8 @@
     </form>
     <?php else: ?>
     <a class='trello-card-details' href='<?= $card['url'] ?>'
-      title='<?= __('Opens the board on Trello.com', 'trellopress') ?>'>
-        <?= __('open task details', 'trellopress') ?>
+      title='<?= __('Opens the board on Trello.com', 'boardpress') ?>'>
+        <?= __('open task details', 'boardpress') ?>
     </a>
     <?php endif; ?>
   </div>

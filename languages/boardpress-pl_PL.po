@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: trellopress\n"
+"Project-Id-Version: boardpress\n"
 "POT-Creation-Date: 2019-06-19 12:56+0200\n"
 "PO-Revision-Date: 2019-06-19 13:05+0200\n"
 "Last-Translator: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: TrelloPress.class.php:254
+#: BoardPress.class.php:254
 #, php-format
 msgid ""
 "Data taken from %s, graciously hosted on\n"
@@ -26,58 +26,58 @@ msgstr ""
 "Informacje pochodzą z tablicy %s na platformie\n"
 "      <a href=“https://trello.com/“>Trello</a>."
 
-#: TrelloPressSettings.class.php:96
+#: BoardPressSettings.class.php:96
 msgid ""
 "To use this extension yoo need to <a href=\"https://trello.com/app-key"
 "\">generate a Trello API key and token</a>."
 msgstr ""
 
-#: templates/trellopress-all-cards.php:15
+#: templates/boardpress-all-cards.php:15
 #, php-format
 msgid "Status: %s"
 msgstr "Status: %s"
 
-#: templates/trellopress-all-cards.php:19
+#: templates/boardpress-all-cards.php:19
 #, php-format
 msgid "Last updated: %s"
 msgstr "Ostatnia zmiana: %s"
 
-#: templates/trellopress-all-cards.php:29
+#: templates/boardpress-all-cards.php:29
 #, php-format
 msgid "Mentioned in %d related posts"
 msgstr "Wymienione w %d artykułach"
 
-#: templates/trellopress-all-cards.php:51
+#: templates/boardpress-all-cards.php:51
 msgid "Takes you to the board on Trello.com"
 msgstr "Otwiera tablicę na platformie Trello"
 
-#: templates/trellopress-all-cards.php:52
-#: templates/trellopress-all-cards.php:70
+#: templates/boardpress-all-cards.php:52
+#: templates/boardpress-all-cards.php:70
 msgid "open task details"
 msgstr "zobacz szczegóły zadania"
 
-#: templates/trellopress-all-cards.php:69
+#: templates/boardpress-all-cards.php:69
 msgid "Opens the board on Trello.com"
 msgstr "Otwiera tablicę na platformie Trello"
 
-#: templates/trellopress-meta-box.php:2
+#: templates/boardpress-meta-box.php:2
 msgid "Connect a Trello card to this post:"
 msgstr "Połącz kartę Trello z tym postem:"
 
-#: templates/trellopress-meta-box.php:5
+#: templates/boardpress-meta-box.php:5
 msgid "Not defined"
 msgstr "Brak"
 
-#: templates/trellopress-settings-page.php:2
-msgid "TrelloPress Settings"
-msgstr "Ustawienia TrelloPress"
+#: templates/boardpress-settings-page.php:2
+msgid "BoardPress Settings"
+msgstr "Ustawienia BoardPress"
 
-#: templates/trellopress-single-card.php:3
+#: templates/boardpress-single-card.php:3
 #, php-format
 msgid "Learn more about the task described in this post: %s"
 msgstr "Więcej o zadaniu opisanym w tym artykule: %s"
 
-#: trellopress.php:63
+#: boardpress.php:63
 msgid "Settings"
 msgstr "Ustawienia"
 

@@ -1,5 +1,5 @@
 <?php
-class TrelloPressMetaBox {
+class BoardPressMetaBox {
 
   function add_box() {
       add_meta_box(
@@ -11,21 +11,21 @@ class TrelloPressMetaBox {
     }
 
   function save_postdata($post_id) {
-    if (array_key_exists('trellopress_card_id', $_POST)) {
+    if (array_key_exists('boardpress_card_id', $_POST)) {
       update_post_meta(
         $post_id,
-        TrelloPress::META_FIELD,
-        $_POST['trellopress_card_id']
+        BoardPress::META_FIELD,
+        $_POST['boardpress_card_id']
       );
     }
   }
 
   function box_html($post) {
-    $tp = new TrelloPress();
+    $tp = new BoardPress();
     $cards = $tp->getVisibleCards();
     $current_card_id = get_post_meta(
-      $post->ID, TrelloPress::META_FIELD, true
+      $post->ID, BoardPress::META_FIELD, true
     );
-    include( 'templates/trellopress-meta-box.php');
+    include( 'templates/boardpress-meta-box.php');
   }
 }

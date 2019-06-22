@@ -1,4 +1,4 @@
-<select name="trellopress[board_id]" id="trellopress[board_id]">
+<select name="boardpress[board_id]" id="boardpress[board_id]">
 <?php foreach( $data['boards'] as $board ) { ?>
   <option
     value='<?= $board['id'] ?>'
