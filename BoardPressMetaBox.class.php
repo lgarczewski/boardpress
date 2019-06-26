@@ -1,7 +1,7 @@
 <?php
 class BoardPressMetaBox {
 
-  function add_box() {
+  public static function add_box() {
       add_meta_box(
         'trello_card_id',
         'Connected Trello Card',
@@ -20,9 +20,9 @@ class BoardPressMetaBox {
     }
   }
 
-  function box_html($post) {
+  public static function box_html($post) {
     $tp = new BoardPress();
-    $cards = $tp->getVisibleCards();
+    $cards = $tp->get_all_data();
     $current_card_id = get_post_meta(
       $post->ID, BoardPress::META_FIELD, true
     );

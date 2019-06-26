@@ -30,7 +30,7 @@ class BoardPress {
     setlocale(LC_TIME, [get_locale() . '.utf8', get_locale()]);
   }
 
-  function shortcode( $raw_atts = [] ) {
+  public static function shortcode( $raw_atts = [] ) {
     // normalize attribute keys, lowercase
     $raw_atts = array_change_key_case((array)$raw_atts, CASE_LOWER);
 
@@ -92,31 +92,25 @@ class BoardPress {
     // Get any existing copy of our transient data
     $cache_key = "{$object}-{$id}-" . implode( '-', $query );
 
-    if ( false === ( $req = get_transient( $tkey ) ) ) {
+    if ( false === ( $body = get_transient( $cache_key ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
       $url = $this->build_query( $object, $id, $query );
 
-      $ch = curl_init();
+      $res = wp_remote_get( $url );
 
-      curl_setopt($ch, CURLOPT_HEADER, 0);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_URL, $url );
-
-      $req = curl_exec($ch);
-
-      if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) != 200 || curl_errno($ch)) {
+      if ( is_wp_error( $res ) ) {
         throw new Exception(
-          'Problem connecting to Trello API: ' . curl_error($ch)
+          'Problem connecting to Trello API: status code ' . 
+          wp_remote_retrieve_response_code( $res )
         );
       }
 
-      curl_close($ch);
+      $body = wp_remote_retrieve_body( $res );
 
-      # @todo fix caching!
-      set_transient( $cache_key, $req, HOUR_IN_SECONDS );
+      set_transient( $cache_key, $body, HOUR_IN_SECONDS );
     }
 
-    return json_decode( $req, true );
+    return json_decode( $body, true );
   }
 
   function process_lists() {
@@ -132,8 +126,6 @@ class BoardPress {
         'color' => $label['color'],
       );
     }
-
-    return $out;
   }
 
   function process_data() {
@@ -230,7 +222,7 @@ class BoardPress {
     return $out;
   }
 
-  function add_post_module( $content ) {
+  public static function add_post_module( $content ) {
     global $post, $card;
     if (!empty($post) && is_single($post)) {
       $card_id = get_post_meta($post->ID, BoardPress::META_FIELD, true);
