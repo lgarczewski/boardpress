@@ -73,8 +73,10 @@ class BoardPress {
     );
   }
 
-  function get_board_link() {
-    return "<a href='{$this->data['url']}'>{$this->data['name']}</a>";
+  private function get_board_link() {
+    return "<a href='" . esc_url($this->data['url']) . "'>" .
+      esc_html($this->data['name']) .
+    "</a>";
   }
 
   function build_query( $object = 'boards', $id, $query = array() ) {
@@ -89,8 +91,11 @@ class BoardPress {
   }
 
   function get( $object, $id, $query ) {
+    $cache_key_chunks = $query;
+    array_unshift($cache_key_chunks, $object, $id);
+
     // Get any existing copy of our transient data
-    $cache_key = "{$object}-{$id}-" . implode( '-', $query );
+    $cache_key = sanitize_key(implode(('-'), $cache_key_chunks));
 
     if ( false === ( $body = get_transient( $cache_key ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
@@ -100,7 +105,7 @@ class BoardPress {
 
       if ( is_wp_error( $res ) ) {
         throw new Exception(
-          'Problem connecting to Trello API: status code ' . 
+          'Problem connecting to Trello API: status code ' .
           wp_remote_retrieve_response_code( $res )
         );
       }
@@ -113,13 +118,13 @@ class BoardPress {
     return json_decode( $body, true );
   }
 
-  function process_lists() {
+  private function process_lists() {
     foreach ( $this->data['lists'] as $list ) {
       $this->lists[$list['id']] = $list['name'];
     }
   }
 
-  function process_labels() {
+  private function process_labels() {
     foreach ($this->data['labels'] as $label) {
       $this->labels[$label['id']] = array(
         'name' => $label['name'],
@@ -128,8 +133,7 @@ class BoardPress {
     }
   }
 
-  function process_data() {
-//    die( var_dump($this->shortcode_filters));
+  private function process_data() {
     foreach ($this->data['cards'] as $card) {
       if (
         !empty($this->shortcode_filters['list']) &&
@@ -178,7 +182,7 @@ class BoardPress {
     }
   }
 
-  function get_labels( $label_ids ) {
+  private function get_labels( $label_ids ) {
     $out = array();
     foreach ( $label_ids as $label_id ) {
       $out[] =  $this->labels[$label_id];
@@ -187,7 +191,7 @@ class BoardPress {
     return $out;
   }
 
-  function get_checklists( $card_id ) {
+  private function get_checklists( $card_id ) {
     // @todo Optimize!
     // @todo do this once for whole data set!
     $out = array();
@@ -200,7 +204,7 @@ class BoardPress {
     return $out;
   }
 
-  function get_related_posts( $card_id ) {
+  private function get_related_posts( $card_id ) {
     $args = array(
     'meta_key' => self::META_FIELD,
     'meta_value' => $card_id,
@@ -212,7 +216,7 @@ class BoardPress {
     return get_posts($args);
   }
 
-  function render_template( $template, $data = array() ) {
+  private function render_template( $template, $data = array() ) {
 
     ob_start();
     require( "templates/boardpress-$template.php" );
@@ -245,9 +249,11 @@ class BoardPress {
   public static function add_entry_footer() {
     $tp = new self();
     echo sprintf(
-      __('Data taken from %s, graciously hosted on
-          <a href="https://trello.com/">Trello</a>.', 'boardpress'),
-        $tp->get_board_link()
+      esc_html__(
+        'Data taken from %s, graciously hosted on <a href="https://trello.com/">Trello</a>.',
+        'boardpress'
+      ),
+      $tp->get_board_link()
     );
   }
 

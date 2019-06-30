@@ -93,7 +93,8 @@ class BoardPressSettings {
   }
 
   public function api_help_text() {
-    _e( 'To use this extension yoo need to <a href="https://trello.com/app-key">generate a Trello API key and token</a>.' );
+    _e( 'To use this extension you need to <a href="https://trello.com/app-key">generate a Trello API key and token</a>.'
+    , 'boardpress' );
   }
 
   public function api_token_callback() {
@@ -110,7 +111,10 @@ class BoardPressSettings {
       $boards = $tp->get( 'members', 'me', ['boards' => 'all'] );
       $this->render('settings-board-picker', $boards);
     } else {
-      echo "set API token &amp; key first to be able to pick a board";
+      esc_html_e(
+        'Set API token & key first to be able to pick a board.',
+        'boardpress'
+      );
     }
   }
 
@@ -123,8 +127,9 @@ class BoardPressSettings {
   }
 
   private function build_input( $id ) {
+    $id_safe = esc_attr($id);
     printf(
-      "<input type='text' pattern='[\w]+' id='boardpress[{$id}]' name='boardpress[{$id}]' value='%s' />",
+      "<input type='text' pattern='[\w]+' id='boardpress[{$id_safe}]' name='boardpress[{$id_safe}]' value='%s' />",
       isset( $this->options[$id] ) ? esc_attr( $this->options[$id]) : ''
     );
   }

@@ -15,7 +15,7 @@ class BoardPressMetaBox {
       update_post_meta(
         $post_id,
         BoardPress::META_FIELD,
-        $_POST['boardpress_card_id']
+        sanitize_meta(BoardPress::META_FIELD, $_POST['boardpress_card_id'])
       );
     }
   }

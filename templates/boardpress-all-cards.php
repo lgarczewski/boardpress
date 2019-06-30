@@ -2,17 +2,19 @@
 <article class="trello-card post blog">
   <header class="entry-header">
     <h2>
-      <a href="<?= $card['url'] ?>"><?= $card['name'] ?></a>
+      <a href="<?= esc_url($card['url']) ?>">
+        <?= esc_html($card['name']) ?>
+      </a>
     </h2>
     <div class="entry-meta trello-list">
       <?php foreach ( $card['labels'] as $label ) : ?>
       <span class="trello-label
-      <?= isset( $label['color'] ) ? 'trello-label-'. $label['color'] : '' ?>">
-        <?= $label['name'] ?>
+      <?= isset($label['color']) ? 'trello-label-' . sanitize_html_class($label['color']) : '' ?>">
+        <?= esc_html($label['name']) ?>
       </span>
       <?php endforeach; ?>
-      <span class="trello-status trello-status-<?= $card['statslug'] ?>">
-        <?= sprintf(__('Status: %s'), strtolower( $card['status'] )) ?>
+      <span class="trello-status trello-status-<?= sanitize_html_class($card['statslug']) ?>">
+        <?= sprintf(__('Status: %s'), strtolower( esc_html($card['status']) )) ?>
       </span>
       <span>
         <?= sprintf(

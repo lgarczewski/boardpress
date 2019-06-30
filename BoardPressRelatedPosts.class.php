@@ -1,12 +1,9 @@
 <?php
-// @todo add custom title to page
-// @todo add intro to page
 
 class BoardPressRelatedPosts {
   const QUERY_VAR = 'trello_related_posts';
 
   public static function get_link( $card_id ) {
-    // @todo v2 make the related posts link pretty instead of query-based
     return add_query_arg( self::QUERY_VAR, $card_id, get_site_url() );
   }
 
